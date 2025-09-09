@@ -3,7 +3,7 @@
 $host = 'localhost';
 $db = 'todo_db'; //nome do banco que criei
 $user = 'root'; //usuario mysql
-$pass = 'Tiro1212.'; //senha mysql
+$pass = ''; //senha mysql
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
