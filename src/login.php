@@ -7,20 +7,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = trim($_POST['email'] ?? '') ;
     $password = trim($_POST['password'] ?? '');
 
-    //busca o usuario pelo email
-    $stmt = $pdo->prepare("SELECT * FROM users WHERE email = ?");
-    $stmt->execute([$email]);
-    $user = $stmt->fetch();
+    if (!empty($email) && !empty($password)) {
+        //busca o usuario pelo email
+        $stmt = $pdo->prepare("SELECT id, name, email, password FROM users WHERE email = ?");
+        $stmt->execute([$email]);
+        $user = $stmt->fetch();
+    
 
-    if ($user && password_verify($password, $user['password'])) {
-        //login valido
-        $_SESSION['user_id'] = $user['id'];
-        $_SESSION['user_email'] = $user['email'];
-        header("Location: tasks.php"); //redireciona para a pagina de tarefas
-        exit;
+        if ($user && password_verify($password, $user['password'])) {
+            //salva informaçoes na sessao
+            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['user_name'] = $user['name'];
+            $_SESSION['user_email'] = $user['email'];
+
+            header("Location: tasks.php"); //redireciona para a pagina de tarefas
+            exit;
+        } else {
+            $error = "Email ou senha inválidos!";
+        }
     } else {
-        $error = "Email ou senha inválidos!";
+        $message = "Preencha todos os campos!";
     }
+
 }
 ?>
 
@@ -30,9 +38,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
 </head>
 <body>
-    <h2>Login</h2>
+    <div class="container">
+        <h2>Login</h2>
 
     <?php if (!empty($error)) echo "<p style='color:red;'>$error</p>"; ?>
 
@@ -43,5 +53,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <input type="password" name="password" required><br><br>
         <button type="submit">Entrar</button>
     </form>
+
+    <p>Não tem uma conta? <a href="register.php">Cadastre-se aqui</a></p>
+    </div>
 </body>
 </html>

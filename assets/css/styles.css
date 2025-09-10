@@ -1,0 +1,132 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f0f2f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Container comum para todas as páginas */
+.container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    max-width: 90%;
+}
+
+/* Cabeçalhos */
+h1, h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Links de logout, login ou cadastro */
+a {
+    text-decoration: none;
+    color: #5cb85c;
+    font-weight: bold;
+    padding: 20px;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Mensagens de erro ou sucesso */
+.message {
+    text-align: center;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+/* Formulários */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form input {
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    outline: none;
+}
+
+form button {
+    padding: 15px;
+    border: none;
+    border-radius: 6px;
+    background-color: #5cb85c;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: 5px;
+}
+
+form button:hover {
+    background-color: #06b31d;
+}
+
+/* Lista de tarefas */
+.task-list {
+    list-style: none;
+    padding: 0;
+}
+
+.task-list li {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.task-list li.completed span {
+    text-decoration: line-through;
+    color: #888;
+}
+
+.actions a {
+    margin-left: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.complete-btn {
+    color: #5cb85c;
+}
+
+.delete-btn {
+    color: #d9534f;
+}
+
+/* Botão de logout */
+.logout-btn {
+    display: block;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #d9524f;
+    font-weight: bold;
+}
+
+/* Estilo responsivo */
+@media (max-width: 500px) {
+    .container {
+        width: 90%;
+        padding: 20px;
+    }
+}

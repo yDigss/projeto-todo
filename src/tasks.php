@@ -51,30 +51,31 @@ $tasks = $stmt->fetchAll();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minhas Tarefas</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
 </head>
 <body>
-    <h2>Bem-vindo, <?= htmlspecialchars($_SESSION['user_email']);?></h2>
-    <a href="logout.php">Sair</a>
+    <div class="container">
+    <h1>Olá, <?= htmlspecialchars($_SESSION['user_name']);?></h1>
+    <a href="logout.php" class="logout-btn">Sair</a>
 
-    <h3>Adicionar Tarefa</h3>
-    <form method="POST">
+    <form method="POST" class="task-form">
         <input type="text" name="title" placeholder="Digite sua tarefa" required>
         <button type="submit">Adicionar</button>
     </form>
 
-    <h3>Minhas Tarefas</h3>
-    <ul>
+    <ul class="task-list">
         <?php foreach($tasks as $task): ?>
-            <li>
-                <?php if ($task['completed']): ?>
-                    <s><?= htmlspecialchars($task['title']); ?></s>
-                <?php else: ?>
-                    <?= htmlspecialchars($task['title']); ?>
-                    <a href="?complete=<?= $task['id']; ?>">[Concluir]</a>
-                <?php endif; ?>
-                <a href="?delete=<?= $task['id']; ?>">[Excluir]</a>
+            <li class="<?= $task['completed'] ? 'completed' : '' ?>">
+                <span><?= htmlspecialchars($task['title']); ?></span>
+                <div class="actions">
+                    <?php if (!$task['completed']): ?>
+                        <a href="?complete=<?= $task['id']; ?> "class="complete-btn">✔</a>
+                    <?php endif; ?>
+                    <a href="?delete=<?= $task['id']; ?> "class="delete-btn">✖</a>
+                </div>
             </li>
         <?php endforeach; ?>
     </ul>
+    </div>
 </body>
 </html>
