@@ -1,0 +1,20 @@
+#IDes e Editores
+.vscode/
+.idea/
+
+#Sistema operacional
+.DS_Store
+Thumbs.db
+
+#Logs e arquivos temporarios
+*.log 
+*.cache
+*.tmp 
+*.swp
+*.bak
+
+#Dependencias
+vendor/
+
+#Configuraçoes e credenciais sensiveis
+.env
